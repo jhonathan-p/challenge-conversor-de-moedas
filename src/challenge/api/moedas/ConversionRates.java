@@ -2,5 +2,7 @@ package challenge.api.moedas;
 
 import com.google.gson.annotations.SerializedName;
 
-public record ConversionRates(@SerializedName("conversion_rates") Moedas conversionRates) {
+import java.util.Map;
+
+public record ConversionRates(@SerializedName("conversion_rates") Map<String, Double> conversionRates) {
 }

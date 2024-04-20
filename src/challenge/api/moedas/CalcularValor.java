@@ -6,117 +6,128 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CalcularValor {
-    private double moeda1 = 0;
-    private double moeda2 = 0;
-    private String moeda1Nome = "";
-    private String moeda2Nome = "";
+    private double moeda1Valor;
+    private String moeda1Nome;
+    private double moeda2Valor;
+    private String moeda2Nome;
+    private boolean primeiraMoeda = true;
+    private String moedaNome;
+    private double moedaValor;
+    private double valor;
+    private double valorConvertido;
 
-    public void escolheMoeda1(ConversionRates conversionRates) {
-        System.out.print(Mensagens.mensagemMoeda1);
-        while (moeda1 == 0) {
+    public String getMoeda1Nome() {
+        return moeda1Nome;
+    }
+
+    public String getMoeda2Nome() {
+        return moeda2Nome;
+    }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public double getValorConvertido() {
+        return valorConvertido;
+    }
+
+    public void calculaMoedaPorOpcao(ConversionRates conversionRates) {
+        moedaValor = 0;
+        if (primeiraMoeda) {
+            System.out.print(Mensagens.mensagemMoedaOpcoes.formatted(Mensagens.moeda1));
+        } else {
+            System.out.print(Mensagens.mensagemMoedaOpcoes.formatted(Mensagens.moeda2));
+        }
+        while (moedaValor == 0) {
             try {
-                while (true) {
-                    Scanner scanner = new Scanner(System.in);
-                    int escolha1 = scanner.nextInt();
-                    switch (escolha1) {
-                        case 1:
-                            moeda1 = conversionRates.conversionRates().brl();
-                            moeda1Nome = "BRL";
-                            break;
-                        case 2:
-                            moeda1 = conversionRates.conversionRates().cad();
-                            moeda1Nome = "CAD";
-                            break;
-                        case 3:
-                            moeda1 = conversionRates.conversionRates().eur();
-                            moeda1Nome = "EUR";
-                            break;
-                        case 4:
-                            moeda1 = conversionRates.conversionRates().gbp();
-                            moeda1Nome = "GBP";
-                            break;
-                        case 5:
-                            moeda1 = conversionRates.conversionRates().jpy();
-                            moeda1Nome = "JPY";
-                            break;
-                        case 6:
-                            moeda1 = conversionRates.conversionRates().rub();
-                            moeda1Nome = "RUB";
-                            break;
-                        case 7:
-                            moeda1 = conversionRates.conversionRates().usd();
-                            moeda1Nome = "USD";
-                            break;
-                        case 0:
-                            System.exit(0);
-                    }
-                    if (moeda1 == 0) {
-                        System.out.print("Por favor, escolha uma opção válida: ");
-                    } else {
+                Scanner scanner = new Scanner(System.in);
+                int escolha = scanner.nextInt();
+                switch (escolha) {
+                    case 1:
+                        moedaValor = conversionRates.conversionRates().get("usd");
+                        moedaNome = "USD";
                         break;
-                    }
+                    case 2:
+                        moedaValor = conversionRates.conversionRates().get("cad");
+                        moedaNome = "CAD";
+                        break;
+                    case 3:
+                        moedaValor = conversionRates.conversionRates().get("eur");
+                        moedaNome = "EUR";
+                        break;
+                    case 4:
+                        moedaValor = conversionRates.conversionRates().get("jpy");
+                        moedaNome = "JPY";
+                        break;
+                    case 5:
+                        moedaValor = conversionRates.conversionRates().get("gbp");
+                        moedaNome = "GBP";
+                        break;
+                    case 6:
+                        moedaValor = conversionRates.conversionRates().get("brl");
+                        moedaNome = "BRL";
+                        break;
+                    case 7:
+                        calculaMoedaPorCodigo(conversionRates);
+                        break;
+                    case 0:
+                        System.exit(0);
+                }
+                if (moedaValor != 0) {
+                    break;
+                } else {
+                    System.out.print("Por favor digite uma opção válida: ");
                 }
             } catch (InputMismatchException e) {
-                System.out.print("Por favor, escolha uma opção válida: ");
+                System.out.print("Por favor digite uma opção válida: ");
             }
+        }
+        if (primeiraMoeda) {
+            moeda1Nome = moedaNome;
+            moeda1Valor = moedaValor;
+            primeiraMoeda = false;
+            calculaMoedaPorOpcao(conversionRates);
+        } else {
+            moeda2Nome = moedaNome;
+            moeda2Valor = moedaValor;
         }
     }
 
-    public void escolheMoeda2(ConversionRates conversionRates) {
-        System.out.print(Mensagens.mensagemMoeda2);
-        while (moeda2 == 0) {
+
+    public void calculaMoedaPorCodigo(ConversionRates conversionRates) {
+        if (primeiraMoeda) {
+            System.out.print(Mensagens.mensagemListaMoedasTodas.formatted(Mensagens.moeda1));
+        } else {
+            System.out.print(Mensagens.mensagemListaMoedasTodas.formatted(Mensagens.moeda2));
+        }
+        while (true) {
             try {
-                while (true) {
-                    Scanner scanner = new Scanner(System.in);
-                    int escolha2 = scanner.nextInt();
-                    switch (escolha2) {
-                        case 1:
-                            moeda2 = conversionRates.conversionRates().brl();
-                            moeda2Nome = "BRL";
-                            break;
-                        case 2:
-                            moeda2 = conversionRates.conversionRates().cad();
-                            moeda2Nome = "CAD";
-                            break;
-                        case 3:
-                            moeda2 = conversionRates.conversionRates().eur();
-                            moeda2Nome = "EUR";
-                            break;
-                        case 4:
-                            moeda2 = conversionRates.conversionRates().gbp();
-                            moeda2Nome = "GBP";
-                            break;
-                        case 5:
-                            moeda2 = conversionRates.conversionRates().jpy();
-                            moeda2Nome = "JPY";
-                            break;
-                        case 6:
-                            moeda2 = conversionRates.conversionRates().rub();
-                            moeda2Nome = "RUB";
-                            break;
-                        case 7:
-                            moeda2 = conversionRates.conversionRates().usd();
-                            moeda2Nome = "USD";
-                            break;
-                        case 0:
-                            System.exit(0);
-                    }
-                    if (moeda2 == 0) {
-                        System.out.print("Por favor, escolha uma opção válida: ");
-                    } else {
-                        break;
-                    }
-                }
-            } catch (InputMismatchException e) {
-                System.out.print("Por favor, escolha uma opção válida: ");
+                Scanner scanner = new Scanner(System.in);
+                String codigoMoeda = scanner.nextLine();
+                moedaNome = codigoMoeda.toUpperCase();
+                moedaValor = conversionRates.conversionRates().get(codigoMoeda);
+                break;
+            } catch (NullPointerException e) {
+                System.out.print("Por favor digite um código válido: ");
             }
+        }
+        if (primeiraMoeda) {
+            moeda1Nome = moedaNome;
+            moeda1Valor = moedaValor;
+            primeiraMoeda = false;
+            calculaMoedaPorOpcao(conversionRates);
+        } else {
+            moeda2Nome = moedaNome;
+            moeda2Valor = moedaValor;
         }
     }
 
-    public void valorConverte() {
+
+    public void calculaValorConvertido() {
         Scanner scanner = new Scanner(System.in);
         System.out.print(Mensagens.mensagemValorConverte);
-        double valor = 0;
+        valor = 0;
         while (true) {
             try {
                 valor = scanner.nextDouble();
@@ -130,12 +141,12 @@ public class CalcularValor {
                 scanner.nextLine(); //wtf double???
             }
         }
-        double valorConvertido = 1 / moeda1 * valor * moeda2;
+        valorConvertido = 1 / moeda1Valor * valor * moeda2Valor;
         System.out.println();
         System.out.println("***************************************");
         System.out.println();
-        System.out.println("Câmbio: $ " + (1 / moeda1 * moeda2));
+        System.out.println("Câmbio = $ " + (1 / moeda1Valor * moeda2Valor));
         System.out.println();
-        System.out.println("$ " + valor + " " + moeda1Nome + " para " + moeda2Nome + ": $ " + valorConvertido);
+        System.out.println("$ " + valor + " " + moeda1Nome + " para " + moeda2Nome + " = $ " + valorConvertido);
     }
 }
