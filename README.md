@@ -6,7 +6,7 @@ Possui dependência da biblioteca gson-2.10.1.jar.<br>
 
 Ele utiliza os dados da API de https://www.exchangerate-api.com/ e realiza conversões de acordo com as escolhas do usuário.<br><br><br>
 
-Ao inciar o programa primeiramente uma lista das moedas mais utilizadas é exibida:<br>
+Ao iniciar o programa, uma lista das moedas mais utilizadas é exibida:<br>
 
 <img src="md/moeda1.png" alt="Imagem da tela de início do programa.">
 
@@ -14,7 +14,7 @@ Ao inciar o programa primeiramente uma lista das moedas mais utilizadas é exibi
 
 <img src="md/moedacodigo.png" alt="Imagem da lista de códigos de moedas.">
 
-Ao escolher a primeira moeda será perguntado novamente para qual moeda você deseja converter o valor.<br>
+Ao escolher a primeira moeda, será perguntado novamente para qual moeda você deseja converter o valor.<br>
 
 <img src="md/moeda2.png" alt="Imagem da segunda moeda a escolher.">
 
