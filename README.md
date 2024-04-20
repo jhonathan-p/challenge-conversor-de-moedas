@@ -1,4 +1,4 @@
-## Conversor de moedas para o Challenge da Alura referente ao programa ONE (Oracle Next Education).<br><br><br>
+## Conversor de moedas para o Challenge da Alura referente ao programa ONE - Oracle Next Education.<br><br>
 
 O projeto Conversor de Moedas foi desenvolvido em Java usando IntelliJ IDEA Community Edition.<br>
 
@@ -14,11 +14,11 @@ Ao inciar o programa primeiramente uma lista das moedas mais utilizadas é exibi
 
 <img src="md/moedacodigo.png" alt="Imagem da lista de códigos de moedas.">
 
-Ao escolher a primeira moeda será perguntado para qual moeda você deseja converter o valor.<br>
+Ao escolher a primeira moeda será perguntado novamente para qual moeda você deseja converter o valor.<br>
 
 <img src="md/moeda2.png" alt="Imagem da segunda moeda a escolher.">
 
-Deve ser digitado o valor a ser convertido.<br>
+Ao escolher a segunda moeda, deve ser digitado o valor a ser convertido.<br>
 
 <img src="md/valoraconverter.png" alt="Imagem do valor a ser convertido.">
 
@@ -39,7 +39,6 @@ Existe um JSON de testes na classe ExchangeRateAPI.java que pode ser utilizado n
 
 <img src="md/erro.png" alt="Imagem do erro.">
 
-<br>
 <br>
 <br>
 
